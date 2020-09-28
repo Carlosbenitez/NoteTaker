@@ -2,7 +2,16 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.jumbotron{
+  background-image: linear-gradient(120deg, #7eb0ff 0%, #c2e9fb 100%);
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -25,6 +34,11 @@ html, body {
   width: 100%;
   outline: none;
   border: none;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .note-textarea {
@@ -60,6 +74,11 @@ html, body {
   border-top: none;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .list-container i {
@@ -72,4 +91,12 @@ html, body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+}
+
+.navbar{
+  background-image: linear-gradient(120deg, #6aa2fc 0%, #c2e9fb 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
