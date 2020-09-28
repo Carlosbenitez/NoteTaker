@@ -1,55 +1,48 @@
-const { notStrictEqual } = require("assert");
 const express = require("express")
 const path = require("path");
-const app = express()
 const fs = require("fs");
 
+const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT,function(){
-    console.log("App listening on PORT: " + PORT);
-});
-app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const notesArray=[]
-
-app.get("/", function(req, res) {
-
-    res.sendFile(path.join(__dirname, "public/index.html"));
-});
+app.use(express.static("public"));
 
 app.get("/notes", function(req, res){
 
     res.sendFile(path.join(__dirname, "public/notes.html"))
 });
 
-app.post("/api/notes", function(req, res){
-    console.log("req: ", req);
-    notesArray.push(req.body)
-    console.log(req.body)
-    res.send("This worked")
-    //put notesArray into a string for storage
-    var notesString = JSON.stringify(notesArray)
-    fs.writeFile("./storage/data.json", notesString, function () {
-
-    });
-
+app.get("/api/notes", function(req, res){
+    res.sendFile(path.join(__dirname, "./db/db.json"));
 });
 
-app.get("/api/notes", function(req, res){
-    fs.readFile("./storage/data.json", 'utf8', (err, data) => {
-        if(err){
-            return err;
-        }
+app.get("/api/notes/:id", function(req, res) {
+    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    res.json(savedNotes[Number(req.params.id)]);
+});
 
-        console.log("notes: ", data);
-        res.json(data)
-    });
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+app.post("/api/notes", function(req, res){
+    console.log("req: ", req);
+    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let newNote = req.body;
+    let uniqueID= (savedNotes.length).toString();
+    newNote.id = uniqueID;
+    savedNotes.push(newNote);
+    console.log(req.body);
+    res.send("This worked");
+    //put notesArray into a string for storage
+    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+    res.json(savedNotes);
 });
 
 app.delete("/api/notes/:id", function(req, res) {
-    let savedNotes = JSON.parse(fs.readFileSync("./storage/data.json", "utf8"));
+    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let noteID = req.params.id;
     let newID = 0;
     console.log(`Deleting note with ID ${noteID}`);
@@ -62,6 +55,10 @@ app.delete("/api/notes/:id", function(req, res) {
         newID++;
     }
 
-    fs.writeFileSync("./storage/data.json", JSON.stringify(savedNotes));
+    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
     res.json(savedNotes);
+});
+
+app.listen(PORT,function(){
+    console.log("App listening on PORT: " + PORT);
 });

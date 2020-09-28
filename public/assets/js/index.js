@@ -12,7 +12,7 @@ const getNotes = () => {
   return $.ajax({
     url: "/api/notes",
     method: "GET",
-  })
+  });
 };
 
 // A function for saving a note to the db
@@ -137,12 +137,7 @@ const renderNoteList = (notes) => {
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => {
-  return getNotes().then(notes => {
-    let result = JSON.parse(notes);
-
-    console.log("result: ", result);
-    renderNoteList(result);
-  });
+  return getNotes().then(renderNoteList);
 };
 
 $saveNoteBtn.on("click", handleNoteSave);
