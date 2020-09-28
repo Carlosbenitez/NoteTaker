@@ -1,13 +1,13 @@
 const { notStrictEqual } = require("assert");
 const express = require("express")
 const path = require("path");
-const port = 8080
 const app = express()
 const fs = require("fs");
 
+const PORT = process.env.PORT || 8080;
 
-app.listen(port,function(){
-    console.log("Server is listening")
+app.listen(PORT,function(){
+    console.log("App listening on PORT: " + PORT);
 });
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
