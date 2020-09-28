@@ -1,3 +1,25 @@
+# Note Taker
+
+## Description 
+This is a simple note taking app. It is able to save and delete notes as needed. It utilizes HTML, CSS, Javascript, JSON, and Heroku. The app uses servers which is handled by Heroku.
+
+## Installation
+There is no installation needed just follow the link provided below to be connected to the Heroku based app.
+https://note-taker-cjb.herokuapp.com/
+
+## Usage 
+The app is very easy to use simply go to the app and type in your notes. 
+Save them with the floppy disk icon at the top right. 
+Make new notes with the pencil at the top right. 
+Delete notes by clicking the trash can next to the notes
+
+## Credits
+My TAs and classmates were a big help in the creation and deployment of this app.
+
+
+
+
+
 # Unit 11 Express Homework: Note Taker
 
 ## Description
